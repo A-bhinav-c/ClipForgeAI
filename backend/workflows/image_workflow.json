@@ -1,0 +1,110 @@
+{
+  "1": {
+    "inputs": {
+      "ckpt_name": "v1-5-pruned-emaonly.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "2": {
+    "inputs": {
+      "text": "Cinematic extreme close-up of a human eye, intricate glowing artificial intelligence neural networks reflected in the iris, dark futuristic atmosphere, subtle cyan and purple lighting, photorealistic, dramatic lighting, premium science fiction film cinematography, highly detailed, sharp focus",
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "3": {
+    "inputs": {
+      "text": "blurry, low quality, distorted eye, bad anatomy, deformed iris, extra pupils, duplicate features, unrealistic texture, watermark, text, logo",
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "4": {
+    "inputs": {
+      "width": 512,
+      "height": 512,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "Empty Latent Image"
+    }
+  },
+  "5": {
+    "inputs": {
+      "seed": 586883444718133,
+      "steps": 20,
+      "cfg": 7,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "denoise": 1,
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "2",
+        0
+      ],
+      "negative": [
+        "3",
+        0
+      ],
+      "latent_image": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "6": {
+    "inputs": {
+      "samples": [
+        "5",
+        0
+      ],
+      "vae": [
+        "1",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "7": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "format": "png",
+      "format.bit_depth": "8-bit",
+      "format.input_color_space": "sRGB",
+      "images": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "SaveImageAdvanced",
+    "_meta": {
+      "title": "Save Image (Advanced)"
+    }
+  }
+}
