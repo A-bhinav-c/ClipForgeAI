@@ -106,6 +106,20 @@ ClipForgeAI/
    npm run dev
    ```
 
+## Screenshots
+
+### AI Studio
+![AI Studio](screenshots/ai-studio.png)
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Script Generation
+![Generated Script](screenshots/generated-script.png)
+
+### Scene Generation
+![Generated Scenes](screenshots/generated-scenes.png)
+
 ## Status
 
 Currently under active development.
